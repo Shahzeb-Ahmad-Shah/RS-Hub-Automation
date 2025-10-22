@@ -8,7 +8,6 @@ import org.testng.annotations.Test;
 import shahtest_web.WebTest.base.BaseTest;
 import shahtest_web.WebTest.pages.*;
 
-
 import java.time.Duration;
 
 public class NegativeTests extends BaseTest {
@@ -230,11 +229,7 @@ public class NegativeTests extends BaseTest {
         phoneInput.sendKeys("03001234567");
 
         WebElement emailInput = driver.findElement(By.xpath("//input[@formcontrolname='salesEmail']"));
-        emailInput.clear();
         emailInput.sendKeys("invalid-email");
-
-        WebElement contactEmailInput = driver.findElement(By.xpath("//input[@formcontrolname='contactEmail']"));
-        contactEmailInput.clear();
         contactEmailInput.sendKeys("invalid-email");
 
         WebElement firstNameInput  = driver.findElement(By.xpath("//input[@formcontrolname='userFirstName']"));
