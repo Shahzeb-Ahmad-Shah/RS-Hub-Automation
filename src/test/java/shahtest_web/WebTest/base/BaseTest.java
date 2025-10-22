@@ -19,7 +19,7 @@ public class BaseTest {
         options.addArguments("--start-maximized");
 
         driver = new ChromeDriver(options);
-        driver.get("https://devrshub.forcetechnology.com/");
+        driver.get("https://testrshub.forcetechnology.com/");
         Thread.sleep(5000);
     }
 

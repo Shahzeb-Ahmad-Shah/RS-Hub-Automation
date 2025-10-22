@@ -2,6 +2,8 @@ package shahtest_web.WebTest.pages;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.*;
+import org.testng.Assert;
+
 import java.time.Duration;
 
 public class LoginPage {
@@ -34,20 +36,28 @@ public class LoginPage {
     
     public void verifyLoginFailed() {
         try {
+            // Include #passwordError in the wait
             WebElement errorElement = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.cssSelector(".login-error, .error-message, .mat-mdc-snack-bar-label, div[role='alert']"))
+                By.cssSelector("#passwordError, .login-error, .error-message, .mat-mdc-snack-bar-label, div[role='alert']"))
             );
 
-            String errorText = errorElement.getText().trim().toLowerCase();
+            String errorText = errorElement.getText().trim();
+            System.out.println("🔎 Found error text: " + errorText);
 
-            if (errorText.contains("incorrect") ||
-                errorText.contains("wrong") ||
-                errorText.contains("invalid") ||
-                errorText.contains("account or password is incorrect")) {
-                
-                System.out.println("✅ Login failed as expected: " + errorElement.getText());
+            // Case-insensitive check
+            String lower = errorText.toLowerCase();
+
+            if (lower.contains("incorrect") ||
+                lower.contains("wrong") ||
+                lower.contains("invalid") ||
+                lower.contains("please enter your password") ||
+                lower.contains("account or password is incorrect")) {
+
+                System.out.println("✅ Login failed as expected: " + errorText);
+                Assert.assertTrue(true, "Login failed message displayed correctly.");
+
             } else {
-                throw new AssertionError("⚠️ Unexpected login message: " + errorElement.getText());
+                throw new AssertionError("⚠️ Unexpected login message: " + errorText);
             }
 
         } catch (TimeoutException e) {
@@ -56,6 +66,7 @@ public class LoginPage {
             throw new AssertionError("❌ Login error element not found on page.");
         }
     }
+
 
 }
 

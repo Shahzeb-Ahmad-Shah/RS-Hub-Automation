@@ -3,14 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="shahtest_web.WebTest.tests.AppTest">
+      <class name="shahtest_web.WebTest.tests.NegativeTests">
         <methods>
           <include name="setup"/>
-          <include name="invalidLoginTest"/>
+          <include name="invalidLoginEmptyEmail"/>
           <include name="tearDown"/>
-          <include name="logInTest"/>
         </methods>
-      </class> <!-- shahtest_web.WebTest.tests.AppTest -->
+      </class> <!-- shahtest_web.WebTest.tests.NegativeTests -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
