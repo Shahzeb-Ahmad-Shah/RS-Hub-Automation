@@ -79,6 +79,23 @@ public class AppTest extends BaseTest {
         String distributorName = "Arctic Distributors Test";
         OrganizationPage organizationPage = new OrganizationPage(driver);
         organizationPage.addNewDistributor(distributorName);
+    }   
+    
+    @Test(priority = 8, dependsOnMethods = "logInTest")
+    public void invalidLoginTest() throws InterruptedException {
+        HomePage homePage = new HomePage(driver);
+
+        // logout first if logged in
+        if (homePage.isLoggedIn()) {
+            homePage.logout();
+            Thread.sleep(5000);
+        }
+
+        // now perform invalid login
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login("ft.engineer@teo-intl.com", "WrongPassword123");
+        loginPage.verifyLoginFailed();
     }
+
 }
 

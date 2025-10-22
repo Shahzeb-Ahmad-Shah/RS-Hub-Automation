@@ -5,13 +5,9 @@
     <classes>
       <class name="shahtest_web.WebTest.tests.AppTest">
         <methods>
-          <include name="addOrganizationTest"/>
-          <include name="measurementTest"/>
           <include name="setup"/>
-          <include name="userTest"/>
-          <include name="instrumentTest"/>
+          <include name="invalidLoginTest"/>
           <include name="tearDown"/>
-          <include name="addInstrumentTest"/>
           <include name="logInTest"/>
         </methods>
       </class> <!-- shahtest_web.WebTest.tests.AppTest -->

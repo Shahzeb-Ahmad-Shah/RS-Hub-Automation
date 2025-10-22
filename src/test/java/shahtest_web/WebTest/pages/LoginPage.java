@@ -31,5 +31,31 @@ public class LoginPage {
             System.out.println("⚠️ No 'Stay signed in?' prompt");
         }
     }
+    
+    public void verifyLoginFailed() {
+        try {
+            WebElement errorElement = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.cssSelector(".login-error, .error-message, .mat-mdc-snack-bar-label, div[role='alert']"))
+            );
+
+            String errorText = errorElement.getText().trim().toLowerCase();
+
+            if (errorText.contains("incorrect") ||
+                errorText.contains("wrong") ||
+                errorText.contains("invalid") ||
+                errorText.contains("account or password is incorrect")) {
+                
+                System.out.println("✅ Login failed as expected: " + errorElement.getText());
+            } else {
+                throw new AssertionError("⚠️ Unexpected login message: " + errorElement.getText());
+            }
+
+        } catch (TimeoutException e) {
+            throw new AssertionError("❌ Expected login failure message, but none appeared within timeout.");
+        } catch (NoSuchElementException e) {
+            throw new AssertionError("❌ Login error element not found on page.");
+        }
+    }
+
 }
 
